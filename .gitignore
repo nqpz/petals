@@ -1,0 +1,6 @@
+/lib
+/*.c
+/*.o
+/*.h
+/petals_wrapper.fut
+/petals
