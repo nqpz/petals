@@ -1,3 +1,3 @@
 require {
-  github.com/diku-dk/lys 0.1.13 #671ee908a5b15ffa869a2251c8eb418158a5cce9
+  github.com/diku-dk/lys 0.1.16 #f59d97c25005f04a1b518e092707e1e54e593715
 }
