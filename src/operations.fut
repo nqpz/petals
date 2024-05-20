@@ -29,5 +29,9 @@ let multiple (n: i32) (initial: bool) (combine: mask -> mask -> mask)
   \(inp: input) -> loop mask = initial
                    for i < n do combine (const mask) (f_i i) inp
 
+let fold [n] 'a (f: mask -> a -> mask) (acc: mask) (as: [n]a): mask =
+  let f' inp b a = (f (const b) a) inp
+  in \(inp: input) -> foldl (f' inp) (acc inp) as
+
 let with_input (f_inp: input -> mask): mask =
   \(inp: input) -> f_inp inp inp
