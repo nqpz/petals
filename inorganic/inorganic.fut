@@ -6,7 +6,7 @@ import "../src/random"
 import "../src/lys_interoperability"
 
 let mask (inp: input) =
-  let (_, r) = dist.rand (0.1, 0.4) inp.rng
+  let (_, r) = dist.rand (0.2, 0.3) inp.rng
   in rotate inp.time (square r)
 
 module lys = mk_lys {
