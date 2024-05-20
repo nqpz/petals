@@ -33,5 +33,9 @@ let fold [n] 'a (f: mask -> a -> mask) (acc: mask) (as: [n]a): mask =
   let f' inp b a = (f (const b) a) inp
   in \(inp: input) -> foldl (f' inp) (acc inp) as
 
+let map_fold [n] 'a (f: a -> mask) (g: mask -> mask -> mask) (acc: mask) (as: [n]a): mask =
+  let fg m a = g m (f a)
+  in fold fg acc as
+
 let with_input (f_inp: input -> mask): mask =
   \(inp: input) -> f_inp inp inp

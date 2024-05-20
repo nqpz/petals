@@ -19,11 +19,11 @@ import "../src/lys_interoperability"
 
 let mask (inp: input) =
   let rngs = rnge.split_rng 10 inp.rng
-  in fold (\c rng ->
-             let (rng, x) = dist.rand (-0.5, 0.5) rng
-             let (_rng, y) = dist.rand (-0.5, 0.5) rng
-             in c ||| (square 0.1 |> translate x y))
-          never rngs
+  in map_fold (\rng ->
+                 let (rng, x) = dist.rand (-0.5, 0.5) rng
+                 let (_rng, y) = dist.rand (-0.5, 0.5) rng
+                 in square 0.1 |> translate x y)
+              (|||) never rngs
 
 module lys = mk_lys {
   let pixel_mask = with_input mask
