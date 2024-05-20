@@ -8,9 +8,7 @@ module lys = mk_lys {
   let pixel_mask =
     with_input (\inp -> rotate inp.time (square 0.1))
 
-  let pixel_color_on =
-    \inp -> argb.white
+  let pixel_color_on = const argb.white
 
-  let pixel_color_off =
-    \inp -> argb.black
+  let pixel_color_off = const argb.black
 }
