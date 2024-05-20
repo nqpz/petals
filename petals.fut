@@ -29,12 +29,12 @@ let pixel_color_base (inp: input): f32 =
   (f32.cos inp.time + 1) / 3 + f32.sqrt (inp.x**2 + inp.y**2)
 
 module lys = mk_lys {
-  let pixel_mask: mask =
-    with_input (\(inp: input) -> petal_groups 5 0.3 |> rotate (f32.sin (inp.time / 3)))
+  let pixel_mask =
+    with_input (\inp -> petal_groups 5 0.3 |> rotate (f32.sin (inp.time / 3)))
 
-  let pixel_color_on: color =
-    \(inp: input) -> argb.from_rgba (pixel_color_base inp) 0 0 1
+  let pixel_color_on =
+    \inp -> argb.from_rgba (pixel_color_base inp) 0 0 1
 
-  let pixel_color_off: color =
-    \(inp: input) -> argb.from_rgba (1 - pixel_color_base inp) 0 0 1
+  let pixel_color_off =
+    \inp -> argb.from_rgba (1 - pixel_color_base inp) 0 0 1
 }
