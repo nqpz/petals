@@ -13,4 +13,7 @@ First run `futhark pkg sync` once.
 Then run `make && ./petals/petals -R -w 600 -h 600` to build and run in
 a window.
 
+**NEW SHAPE:** You can also run `./inorganic/inorganic` to see a
+different shape.
+
 ![Screenshot](screenshot.png)
