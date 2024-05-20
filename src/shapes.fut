@@ -1,7 +1,9 @@
 import "types"
 import "operations"
 
-let empty_mask: mask = const false
+let never: mask = const false
+
+let always: mask = const true
 
 let circle (r: f32): mask =
   \(inp: input) -> f32.sqrt (inp.x**2 + inp.y**2) < r

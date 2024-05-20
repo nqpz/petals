@@ -23,7 +23,7 @@ let mask (inp: input) =
              let (rng, x) = dist.rand (-0.5, 0.5) rng
              let (_rng, y) = dist.rand (-0.5, 0.5) rng
              in c ||| (square 0.1 |> translate x y))
-          empty_mask rngs
+          never rngs
 
 module lys = mk_lys {
   let pixel_mask = with_input mask
