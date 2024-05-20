@@ -7,6 +7,9 @@ import "../src/lys_interoperability"
 let petal: mask =
   (circle 0.15 |> translate (-0.1) 0) &&& (circle 0.15 |> translate 0.1 0)
 
+let multiple (n: i32) combine initial f =
+  map_fold f combine initial (0..<n)
+
 let petals (n: i32) (translated: f32): mask =
   let petal' = petal |> translate 0 translated
   in multiple n (|||) never (\i -> petal' |> rotate (r32 i * 2 * f32.pi / r32 n))
