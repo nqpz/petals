@@ -9,7 +9,7 @@ let petal: mask =
 
 let petals (n: i32) (translated: f32): mask =
   let petal' = petal |> translate 0 translated
-  in multiple n false (|||) (\i -> petal' |> rotate (r32 i * 2 * f32.pi / r32 n))
+  in multiple n (|||) never (\i -> petal' |> rotate (r32 i * 2 * f32.pi / r32 n))
 
 let petal_groups (n: i32) (translated: f32): mask =
   let petals' =
@@ -18,7 +18,7 @@ let petal_groups (n: i32) (translated: f32): mask =
                   |> rotate (inp.time / 10)
                   |> scale 0.5
                   |> translate 0 translated)
-  in multiple n false (|||)
+  in multiple n (|||) never
               (\i -> petals'
                      |> rotate (r32 i * 2 * f32.pi / r32 n)
                      |> time_offset (r32 i)

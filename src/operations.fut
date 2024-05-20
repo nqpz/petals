@@ -24,9 +24,9 @@ let speed_up (s: f32) (f: mask): mask =
 let time_offset (offset: f32) (f: mask): mask =
   \(inp: input) -> f (inp with time = inp.time - offset)
 
-let multiple (n: i32) (initial: bool) (combine: mask -> mask -> mask)
+let multiple (n: i32) (combine: mask -> mask -> mask) (initial: mask)
              (f_i: i32 -> mask): mask =
-  \(inp: input) -> loop mask = initial
+  \(inp: input) -> loop mask = initial inp
                    for i < n do combine (const mask) (f_i i) inp
 
 let fold [n] 'a (f: mask -> a -> mask) (acc: mask) (as: [n]a): mask =
