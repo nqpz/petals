@@ -1,3 +1,7 @@
-PROGNAME=petals
-PROG_FUT_DEPS:=$(shell ls *.fut; find -name \*.fut)
-include lib/github.com/diku-dk/lys/common.mk
+.PHONY: all clean
+
+all:
+	$(MAKE) -C petals
+
+clean:
+	$(MAKE) clean -C petals

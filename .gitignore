@@ -1,8 +1,7 @@
 /lib
-/*.c
-/*.o
-/*.h
-/petals_wrapper.fut
-/petals_wrapper.json
-/petals.lyscache
-/petals
+*.c
+*.o
+*.h
+*_wrapper.fut
+*_wrapper.json
+*.lyscache

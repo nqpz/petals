@@ -10,7 +10,7 @@ libraries with associated header files.
 
 First run `futhark pkg sync` once.
 
-Then run `make && ./petals -R -w 600 -h 600` to build and run in a
-window.
+Then run `make && ./petals/petals -R -w 600 -h 600` to build and run in
+a window.
 
 ![Screenshot](screenshot.png)
