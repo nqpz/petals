@@ -1,5 +1,6 @@
 import "../lib/github.com/diku-dk/lys/lys"
 import "types"
+import "random"
 
 module type lys_input = {
   val pixel_mask: mask
@@ -11,12 +12,13 @@ module type lys_input = {
 
 type text_content = i32
 module mk_lys (lys_input: lys_input): lys with text_content = text_content = {
-  type state = {time: f32, h: i32, w: i32}
+  type state = {time: f32, rng: rng, h: i32, w: i32}
 
   let grab_mouse = false
 
-  let init (_seed: u32) (h: i64) (w: i64): state =
-    {time=0, h=i32.i64 h, w=i32.i64 w}
+  let init (seed: u32) (h: i64) (w: i64): state =
+    {time=0, rng=rnge.rng_from_seed [i32.u32 seed],
+     h=i32.i64 h, w=i32.i64 w}
 
   let resize (h: i64) (w: i64) (s: state): state =
     s with h = i32.i64 h with w = i32.i64 w
@@ -30,7 +32,8 @@ module mk_lys (lys_input: lys_input): lys with text_content = text_content = {
     let size = r32 (i32.min s.h s.w)
 
     let render_pixel (yi: i32) (xi: i32): argb.colour =
-      let inp = {time=s.time, x=r32 (xi - s.w / 2) / size, y=r32 (yi - s.h / 2) / size}
+      let inp = {time=s.time, rng=s.rng,
+                 x=r32 (xi - s.w / 2) / size, y=r32 (yi - s.h / 2) / size}
       in if lys_input.pixel_mask inp
          then lys_input.pixel_color_on inp
          else lys_input.pixel_color_off inp
