@@ -42,7 +42,8 @@ import "../src/lys_interoperability"
 --               (|||) never rngs
 
 let mask (inp: input) =
-  circle 0.3 ^^^ square 0.3
+  scale 0.5 (circle (f32.abs (f32.sin inp.time))
+                    ^^^ square (f32.abs (f32.cos inp.time)))
 
 module lys = mk_lys {
   let pixel_mask = with_input mask
