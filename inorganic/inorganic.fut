@@ -69,7 +69,8 @@ let mask (_: input) =
                                          speed_up speed_b (with_input (\inp -> rotate (-inp.time) s)))
                            in (cond (c == 0) a b) &&& (a ^^^ b))
   let star2 = star ||| translate size 0 star
-  in star2 ||| (translate 0 size star2)
+  let star4 = star2 ||| (translate 0 size star2)
+  in translate (-size / 2) (-size / 2) star4
 
 module lys = mk_lys {
   let pixel_mask = with_input mask
