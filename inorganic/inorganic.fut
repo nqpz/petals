@@ -55,14 +55,17 @@ import "../src/lys_interoperability"
 --            || (a >= start && (corner || a < end)))
 --           (square 0.35) (circle 0.2)
 
-let mask (inp: input) =
-  let point_rng = rnge.rng_from_seed [t32 (inp.x * 1000), t32 (inp.y * 1000)]
-  let rng = rnge.join_rng [inp.rng, point_rng]
-  let (_, c) = dist_i32.rand (0, 1) rng
-  let size = 0.2
-  let s = square size
-  let (a, b) = (rotate inp.time s, rotate (-inp.time) s)
-  in (cond (c == 0) a b) &&& (a ^^^ b)
+let mask (_: input) =
+  let star = with_input (\inp ->
+                           let point_rng = rnge.rng_from_seed [t32 (inp.x * 1000), t32 (inp.y * 1000)]
+                           let rng = rnge.join_rng [inp.rng, point_rng]
+                           let (_, c) = dist_i32.rand (0, 1) rng
+                           let size = 0.2
+                           let s = square size
+                           let (a, b) = (rotate inp.time s, rotate (-inp.time) s)
+                           in (cond (c == 0) a b) &&& (a ^^^ b))
+  let star2 = star ||| translate 0.2 0 star
+  in star2 ||| (translate 0 0.2 star2)
 
 module lys = mk_lys {
   let pixel_mask = with_input mask
