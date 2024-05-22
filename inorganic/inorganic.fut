@@ -59,9 +59,10 @@ let mask (inp: input) =
   let point_rng = rnge.rng_from_seed [t32 (inp.x * 1000), t32 (inp.y * 1000)]
   let rng = rnge.join_rng [inp.rng, point_rng]
   let (_, c) = dist_i32.rand (0, 1) rng
-  let s = 0.2
-  in (cond (c == 0) (rotate inp.time (square s)) (rotate (-inp.time) (square s)))
-     &&& ((rotate inp.time (square s)) ^^^ (rotate (-inp.time) (square s)))
+  let size = 0.2
+  let s = square size
+  let (a, b) = (rotate inp.time s, rotate (-inp.time) s)
+  in (cond (c == 0) a b) &&& (a ^^^ b)
 
 module lys = mk_lys {
   let pixel_mask = with_input mask
