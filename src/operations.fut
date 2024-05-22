@@ -6,6 +6,9 @@ let (f: mask) &&& (g: mask): mask =
 let (f: mask) ||| (g: mask): mask =
   \(inp: input) -> f inp || g inp
 
+let (f: mask) ^^^ (g: mask): mask =
+  \(inp: input) -> bool.i8 (i8.(bool (f inp) ^ bool (g inp)))
+
 let scale (s: f32) (f: mask): mask =
   \(inp: input) -> f (inp with x = inp.x / s with y = inp.y / s)
 
