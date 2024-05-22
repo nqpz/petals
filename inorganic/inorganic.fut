@@ -41,9 +41,19 @@ import "../src/lys_interoperability"
 --                     |> speed_up s)
 --               (|||) never rngs
 
+-- let xor_up_and_down (inp: input) =
+--   scale 0.5 (circle (f32.abs (f32.sin inp.time))
+--                     ^^^ square (f32.abs (f32.cos inp.time)))
+
 let mask (inp: input) =
-  scale 0.5 (circle (f32.abs (f32.sin inp.time))
-                    ^^^ square (f32.abs (f32.cos inp.time)))
+  let a = f32.atan2 inp.y inp.x + f32.pi
+  let f t = t % (2 * f32.pi)
+  let start = f inp.time
+  let end = f (f32.pi / 4 + inp.time)
+  let corner = end < start
+  in cond (((corner || a >= start) && a < end)
+           || (a >= start && (corner || a < end)))
+          (square 0.35) (circle 0.2)
 
 module lys = mk_lys {
   let pixel_mask = with_input mask

@@ -37,3 +37,6 @@ let map_fold [n] 'a (f: a -> mask) (g: mask -> mask -> mask) (acc: mask) (as: [n
 
 let with_input (f_inp: input -> mask): mask =
   \(inp: input) -> f_inp inp inp
+
+let cond (c: bool) (t: mask) (f: mask): mask =
+  \(inp: input) -> if c then t inp else f inp
