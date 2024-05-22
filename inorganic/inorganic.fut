@@ -29,17 +29,20 @@ import "../src/lys_interoperability"
 --                     |> speed_up s)
 --               (&&&) always rngs
 
+-- let random_squares (inp: input) =
+--   let rngs = rnge.split_rng 10 inp.rng
+--   in map_fold (\rng ->
+--                  let (rng, x) = dist.rand (-0.5, 0.5) rng
+--                  let (rng, y) = dist.rand (-0.5, 0.5) rng
+--                  let (_rng, s) = dist.rand (1, 8) rng
+--                  in with_input (\inp -> square 0.1
+--                                         |> rotate inp.time)
+--                     |> translate x y
+--                     |> speed_up s)
+--               (|||) never rngs
+
 let mask (inp: input) =
-  let rngs = rnge.split_rng 10 inp.rng
-  in map_fold (\rng ->
-                 let (rng, x) = dist.rand (-0.5, 0.5) rng
-                 let (rng, y) = dist.rand (-0.5, 0.5) rng
-                 let (_rng, s) = dist.rand (1, 8) rng
-                 in with_input (\inp -> square 0.1
-                                        |> rotate inp.time)
-                    |> translate x y
-                    |> speed_up s)
-              (|||) never rngs
+  circle 0.3 ^^^ square 0.3
 
 module lys = mk_lys {
   let pixel_mask = with_input mask
