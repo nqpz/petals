@@ -45,15 +45,23 @@ import "../src/lys_interoperability"
 --   scale 0.5 (circle (f32.abs (f32.sin inp.time))
 --                     ^^^ square (f32.abs (f32.cos inp.time)))
 
+-- let searching_square (inp: input) =
+--   let a = f32.atan2 inp.y inp.x + f32.pi
+--   let f t = t % (2 * f32.pi)
+--   let start = f inp.time
+--   let end = f (f32.pi / 4 + inp.time)
+--   let corner = end < start
+--   in cond (((corner || a >= start) && a < end)
+--            || (a >= start && (corner || a < end)))
+--           (square 0.35) (circle 0.2)
+
 let mask (inp: input) =
-  let a = f32.atan2 inp.y inp.x + f32.pi
-  let f t = t % (2 * f32.pi)
-  let start = f inp.time
-  let end = f (f32.pi / 4 + inp.time)
-  let corner = end < start
-  in cond (((corner || a >= start) && a < end)
-           || (a >= start && (corner || a < end)))
-          (square 0.35) (circle 0.2)
+  let point_rng = rnge.rng_from_seed [t32 (inp.x * 1000), t32 (inp.y * 1000)]
+  let rng = rnge.join_rng [inp.rng, point_rng]
+  let (_, c) = dist_i32.rand (0, 1) rng
+  let s = 0.2
+  in (cond (c == 0) (rotate inp.time (square s)) (rotate (-inp.time) (square s)))
+     &&& ((rotate inp.time (square s)) ^^^ (rotate (-inp.time) (square s)))
 
 module lys = mk_lys {
   let pixel_mask = with_input mask
