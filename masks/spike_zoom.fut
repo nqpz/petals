@@ -5,7 +5,9 @@ let mask' (inp: input) =
   let x' = inp.x * f32.sgn inp.x
   let (rng, xf) = dist.rand (1.5, 2.5) inp.rng
   let (_rng, r) = dist.rand (x', x' * xf) rng
-  in speed_up center_dist (rotate (.time) (square r))
+  in square r
+     |> rotate (.time)
+     |> speed_up center_dist
 
 let mask = with_input mask'
 

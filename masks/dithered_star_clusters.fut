@@ -17,7 +17,7 @@ let mk_star (inp: input) =
 let mask =
   let star = with_input mk_star
   let star2 = star ||| translate size 0 star
-  let star4 = star2 ||| (translate 0 size star2)
+  let star4 = star2 ||| translate 0 size star2
   in translate (-size / 2) (-size / 2) star4
 
 let color_on = const argb.white

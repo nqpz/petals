@@ -1,8 +1,9 @@
 import "../src/mask_base"
 
 let mask' (inp: input) =
-  scale 0.5 (circle (f32.abs (f32.sin inp.time))
-                    ^^^ square (f32.abs (f32.cos inp.time)))
+  circle (f32.abs (f32.sin inp.time))
+         ^^^ square (f32.abs (f32.cos inp.time))
+  |> scale 0.5
 
 let mask = with_input mask'
 
