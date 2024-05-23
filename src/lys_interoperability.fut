@@ -2,7 +2,7 @@ import "../lib/github.com/diku-dk/lys/lys"
 import "types"
 import "random"
 
-module type lys_input = {
+module type mask = {
   val mask: mask
 
   val color_on: color
@@ -13,7 +13,7 @@ module type lys_input = {
 }
 
 type text_content = i32
-module mk_lys (lys_input: lys_input): lys with text_content = text_content = {
+module mk_lys (lys_input: mask): lys with text_content = text_content = {
   type state = {time: f32, rng: rng, h: i32, w: i32}
 
   let grab_mouse = false
