@@ -16,4 +16,4 @@ let mask = with_input mask'
 
 let color_on = const argb.white
 let color_off = const argb.black
-let name () = "random_squares"
+let name () = "random squares"

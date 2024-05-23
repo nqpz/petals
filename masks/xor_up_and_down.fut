@@ -9,4 +9,4 @@ let mask = with_input mask'
 
 let color_on = const argb.white
 let color_off = const argb.black
-let name () = "xor_up_and_down"
+let name () = "xor up and down"

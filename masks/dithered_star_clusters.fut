@@ -22,4 +22,4 @@ let mask =
 
 let color_on = const argb.white
 let color_off = const argb.black
-let name () = "dithered_star_clusters"
+let name () = "dithered star clusters"

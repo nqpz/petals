@@ -11,4 +11,4 @@ let mask = with_input mask'
 
 let color_on = const argb.white
 let color_off = const argb.black
-let name () = "distorted_square_rotate"
+let name () = "distorted square rotate"
