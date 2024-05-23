@@ -23,7 +23,7 @@ let petal_groups (n: i32) (translated: f32): mask =
               (\i -> petals'
                      |> rotate (const (r32 i * 2 * f32.pi / r32 n))
                      |> time_offset (r32 i)
-                     |> (let u = (r32 i * 2 * f32.pi / r32 n)
+                     |> (let u = r32 i * 2 * f32.pi / r32 n
                          in speed_up (f32.cos u + f32.sin u)))
 
 let mask = petal_groups 5 0.3
