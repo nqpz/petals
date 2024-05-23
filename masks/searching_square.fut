@@ -8,7 +8,7 @@ let mask = with_input (\(inp: input) ->
                          let corner = end < start
                          in cond (((corner || a >= start) && a < end)
                                   || (a >= start && (corner || a < end)))
-                                 (square 0.35) (circle 0.2))
+                                 (square 0.5) (circle 0.2))
 
 let color_on = const argb.white
 let color_off = const argb.black
