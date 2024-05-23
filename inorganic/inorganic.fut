@@ -72,12 +72,12 @@ let dithered_star_clusters (_: input) =
   let star4 = star2 ||| (translate 0 size star2)
   in translate (-size / 2) (-size / 2) star4
 
-let mask (inp: input) =
+let hourglasses (inp: input) =
   with_input (\inp -> show (inp.x * inp.y < 0.01 * f32.sin inp.time))
   |> rotate (inp.time / 2)
 
 module lys = mk_lys {
-  let pixel_mask = with_input mask
+  let pixel_mask = with_input hourglasses
 
   let pixel_color_on = const argb.white
 
