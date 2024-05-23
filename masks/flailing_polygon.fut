@@ -1,8 +1,4 @@
-import "../lib/github.com/athas/matte/colour"
-import "../src/types"
-import "../src/operations"
-import "../src/shapes"
-import "../src/random"
+import "../src/mask_base"
 
 let mask = with_input (\(inp: input) ->
                          let rngs = rnge.split_rng 10 inp.rng

@@ -1,8 +1,4 @@
-import "../lib/github.com/athas/matte/colour"
-import "../src/types"
-import "../src/operations"
-import "../src/shapes"
-import "../src/random"
+import "../src/mask_base"
 
 let mask = with_input (\(inp: input) ->
                          let center_dist = f32.sqrt (inp.x ** 2 + inp.y ** 2)
