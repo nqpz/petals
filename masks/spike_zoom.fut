@@ -7,7 +7,7 @@ let mask' (inp: input) =
   let (_rng, r) = dist.rand (x', x' * xf) rng
   in square r
      |> rotate (.time)
-     |> speed_up center_dist
+     |> speed_up (center_dist * inp.time / 3)
 
 let mask = with_input mask'
 
