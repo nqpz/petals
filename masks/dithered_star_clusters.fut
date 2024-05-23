@@ -1,8 +1,8 @@
-import "../../lib/github.com/athas/matte/colour"
-import "../../src/types"
-import "../../src/operations"
-import "../../src/shapes"
-import "../../src/random"
+import "../lib/github.com/athas/matte/colour"
+import "../src/types"
+import "../src/operations"
+import "../src/shapes"
+import "../src/random"
 
 let mask =
   let size = 0.2

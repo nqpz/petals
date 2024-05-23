@@ -1,7 +1,7 @@
-import "../../lib/github.com/athas/matte/colour"
-import "../../src/types"
-import "../../src/operations"
-import "../../src/shapes"
+import "../lib/github.com/athas/matte/colour"
+import "../src/types"
+import "../src/operations"
+import "../src/shapes"
 
 let petal: mask =
   (circle 0.15 |> translate (-0.1) 0) &&& (circle 0.15 |> translate 0.1 0)

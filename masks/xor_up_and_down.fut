@@ -1,7 +1,7 @@
-import "../../lib/github.com/athas/matte/colour"
-import "../../src/types"
-import "../../src/operations"
-import "../../src/shapes"
+import "../lib/github.com/athas/matte/colour"
+import "../src/types"
+import "../src/operations"
+import "../src/shapes"
 
 let mask = with_input (\(inp: input) ->
                          scale 0.5 (circle (f32.abs (f32.sin inp.time))
