@@ -8,6 +8,8 @@ module type lys_input = {
   val color_on: color
 
   val color_off: color
+
+  val name : () -> string []
 }
 
 type text_content = i32
