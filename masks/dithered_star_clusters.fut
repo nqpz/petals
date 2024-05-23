@@ -10,8 +10,8 @@ let mask =
                            let (rng, speed_b) = dist.rand (1, speed_max) rng
                            let (_, c) = dist_i32.rand (0, 1) rng
                            let s = square size
-                           let (a, b) = (speed_up speed_a (with_input (\inp -> rotate inp.time s)),
-                                         speed_up speed_b (with_input (\inp -> rotate (-inp.time) s)))
+                           let (a, b) = (speed_up speed_a (rotate (.time) s),
+                                         speed_up speed_b (rotate (\inp -> -inp.time) s))
                            in (cond (c == 0) a b) &&& (a ^^^ b))
   let star2 = star ||| translate size 0 star
   let star4 = star2 ||| (translate 0 size star2)

@@ -15,11 +15,13 @@ let scale (s: f32) (f: mask): mask =
 let translate (x_off: f32) (y_off: f32) (f: mask): mask =
   \(inp: input) -> f (inp with x = inp.x - x_off with y = inp.y - y_off)
 
-let rotate (angle: f32) (f: mask): mask =
-  \(inp: input) -> f (inp with x = inp.x * f32.cos angle -
-                                   inp.y * f32.sin angle
-                          with y = inp.y * f32.cos angle +
-                                   inp.x * f32.sin angle)
+let rotate (get_angle: input -> f32) (f: mask): mask =
+  \(inp: input) ->
+    let angle = get_angle inp
+    in f (inp with x = inp.x * f32.cos angle -
+                       inp.y * f32.sin angle
+              with y = inp.y * f32.cos angle +
+                       inp.x * f32.sin angle)
 
 let speed_up (s: f32) (f: mask): mask =
   \(inp: input) -> f (inp with time = inp.time * s)
