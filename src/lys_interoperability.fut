@@ -23,9 +23,20 @@ module mk_lys (lys_input: lys_input): lys with text_content = text_content = {
   let resize (h: i64) (w: i64) (s: state): state =
     s with h = i32.i64 h with w = i32.i64 w
 
+  let new_rng (s: state): rng =
+    -- Hack: Spice up the rng with a poor source.
+    let (_, seed) = rnge.rand s.rng
+    in rnge.rng_from_seed [t32 (3007 * s.time) ^ i32.u64 seed]
+
   let event (e: event) (s: state): state =
     match e
-    case #step td -> s with time = s.time + td
+    case #step td ->
+      s with time = s.time + td
+    case #keydown {key} ->
+                      if key == SDLK_r
+                      then s with time = 0
+                             with rng = new_rng s
+                      else s
     case _ -> s
 
   let render (s: state): [][]argb.colour =
