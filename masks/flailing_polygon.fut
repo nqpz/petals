@@ -14,6 +14,6 @@ let mask' (inp: input) =
 
 let mask = with_input mask'
 
-let color_on = const argb.white
-let color_off = const argb.black
+let color_on (inp: input) = argb.from_rgba (f32.abs (f32.cos inp.time)) 0 0 1
+let color_off (inp: input) = argb.from_rgba 0 (f32.abs (f32.sin inp.time)) 0 1
 let name () = "flailing polygon"

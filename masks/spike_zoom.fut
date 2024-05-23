@@ -11,6 +11,6 @@ let mask' (inp: input) =
 
 let mask = with_input mask'
 
-let color_on = const argb.white
-let color_off = const argb.black
+let color_on = const argb.green
+let color_off = const argb.brown
 let name () = "spike zoom"

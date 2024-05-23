@@ -14,6 +14,8 @@ let mask' (inp: input) =
 
 let mask = with_input mask'
 
-let color_on = const argb.white
+let color_on (inp: input) =
+  let x' = inp.x + 0.5
+  in argb.from_rgba x' (1 - x') (inp.y + 0.5) 1
 let color_off = const argb.black
 let name () = "random squares"

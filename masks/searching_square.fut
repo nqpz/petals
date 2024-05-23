@@ -12,6 +12,8 @@ let mask' (inp: input) =
 
 let mask = with_input mask'
 
-let color_on = const argb.white
+let color_on (inp: input) =
+  let d = 1 - f32.sqrt (inp.x ** 2 + inp.y ** 2)
+  in argb.from_rgba d d 0.5 1
 let color_off = const argb.black
 let name () = "searching square"

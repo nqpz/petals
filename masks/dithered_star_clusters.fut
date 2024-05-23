@@ -20,6 +20,6 @@ let mask =
   let star4 = star2 ||| translate 0 size star2
   in translate (-size / 2) (-size / 2) star4
 
-let color_on = const argb.white
-let color_off = const argb.black
+let color_on = const argb.red
+let color_off = const argb.yellow
 let name () = "dithered star clusters"
