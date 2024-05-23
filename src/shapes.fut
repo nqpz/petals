@@ -5,6 +5,8 @@ let never: mask = const false
 
 let always: mask = const true
 
+let show (c: bool): mask = cond c always never
+
 let circle (r: f32): mask =
   \(inp: input) -> f32.sqrt (inp.x**2 + inp.y**2) < r
 

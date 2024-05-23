@@ -55,22 +55,26 @@ import "../src/lys_interoperability"
 --            || (a >= start && (corner || a < end)))
 --           (square 0.35) (circle 0.2)
 
-let mask (_: input) =
-  let size = 0.2
-  let speed_max = 2
-  let star = with_input (\inp ->
-                           let point_rng = rnge.rng_from_seed [t32 (inp.x * 1000), t32 (inp.y * 1000)]
-                           let rng = rnge.join_rng [inp.rng, point_rng]
-                           let (rng, speed_a) = dist.rand (1, speed_max) rng
-                           let (rng, speed_b) = dist.rand (1, speed_max) rng
-                           let (_, c) = dist_i32.rand (0, 1) rng
-                           let s = square size
-                           let (a, b) = (speed_up speed_a (with_input (\inp -> rotate inp.time s)),
-                                         speed_up speed_b (with_input (\inp -> rotate (-inp.time) s)))
-                           in (cond (c == 0) a b) &&& (a ^^^ b))
-  let star2 = star ||| translate size 0 star
-  let star4 = star2 ||| (translate 0 size star2)
-  in translate (-size / 2) (-size / 2) star4
+-- let dithered_star_clusters (_: input) =
+--   let size = 0.2
+--   let speed_max = 2
+--   let star = with_input (\inp ->
+--                            let point_rng = rnge.rng_from_seed [t32 (inp.x * 1000), t32 (inp.y * 1000)]
+--                            let rng = rnge.join_rng [inp.rng, point_rng]
+--                            let (rng, speed_a) = dist.rand (1, speed_max) rng
+--                            let (rng, speed_b) = dist.rand (1, speed_max) rng
+--                            let (_, c) = dist_i32.rand (0, 1) rng
+--                            let s = square size
+--                            let (a, b) = (speed_up speed_a (with_input (\inp -> rotate inp.time s)),
+--                                          speed_up speed_b (with_input (\inp -> rotate (-inp.time) s)))
+--                            in (cond (c == 0) a b) &&& (a ^^^ b))
+--   let star2 = star ||| translate size 0 star
+--   let star4 = star2 ||| (translate 0 size star2)
+--   in translate (-size / 2) (-size / 2) star4
+
+let mask (inp: input) =
+  with_input (\inp -> show (inp.x * inp.y < 0.01 * f32.sin inp.time))
+  |> rotate (inp.time / 2)
 
 module lys = mk_lys {
   let pixel_mask = with_input mask
