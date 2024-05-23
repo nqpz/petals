@@ -10,9 +10,12 @@ libraries with associated header files.
 
 First run `futhark pkg sync` once.
 
-Then run `make && ./petals -R -w 600 -h 600` to build and run in
-a window.
+Then run `make && ./petals -R -w 600 -h 600` to build and run in a
+window.
 
-Press R to reset.
+Starts with a random shape.  Press:
+
+  - Left arrow and right arrow to cycle the shapes
+  - R to reset the time and the random number generator for all shapes
 
 ![Screenshot](screenshot.png)

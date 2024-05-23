@@ -15,4 +15,4 @@ module type mask = {
   val name : () -> string []
 }
 
-type mask_results = (bool, argb.colour, argb.colour)
+type^ mask_parts = (mask, color, color)
