@@ -1,14 +1,16 @@
 import "../src/mask_base"
 
 let petal: mask =
-  (circle 0.15 |> translate (-0.1) 0) &&& (circle 0.15 |> translate 0.1 0)
+  (circle 0.15 |> translate (-0.1) 0)
+  &&& (circle 0.15 |> translate 0.1 0)
 
 let multiple (n: i32) combine initial f =
   map_fold f combine initial (0..<n)
 
 let petals (n: i32) (translated: f32): mask =
   let petal' = petal |> translate 0 translated
-  in multiple n (|||) never (\i -> petal' |> rotate (const (r32 i * 2 * f32.pi / r32 n)))
+  in multiple n (|||) never
+              (\i -> petal' |> rotate (const (r32 i * 2 * f32.pi / r32 n)))
 
 let petal_groups (n: i32) (translated: f32): mask =
   let petals' =
@@ -24,8 +26,8 @@ let petal_groups (n: i32) (translated: f32): mask =
                      |> (let u = (r32 i * 2 * f32.pi / r32 n)
                          in speed_up (f32.cos u + f32.sin u)))
 
-
-let mask = petal_groups 5 0.3 |> rotate (\inp -> f32.sin (inp.time / 3))
+let mask = petal_groups 5 0.3
+           |> rotate (\inp -> f32.sin (inp.time / 3))
 
 let pixel_color_base (inp: input): f32 =
   (f32.cos inp.time + 1) / 3 + f32.sqrt (inp.x**2 + inp.y**2)
