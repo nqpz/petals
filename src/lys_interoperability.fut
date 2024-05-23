@@ -3,11 +3,11 @@ import "types"
 import "random"
 
 module type lys_input = {
-  val pixel_mask: mask
+  val mask: mask
 
-  val pixel_color_on: color
+  val color_on: color
 
-  val pixel_color_off: color
+  val color_off: color
 }
 
 type text_content = i32
@@ -45,9 +45,9 @@ module mk_lys (lys_input: lys_input): lys with text_content = text_content = {
     let render_pixel (yi: i32) (xi: i32): argb.colour =
       let inp = {time=s.time, rng=s.rng,
                  x=r32 (xi - s.w / 2) / size, y=r32 (yi - s.h / 2) / size}
-      in if lys_input.pixel_mask inp
-         then lys_input.pixel_color_on inp
-         else lys_input.pixel_color_off inp
+      in if lys_input.mask inp
+         then lys_input.color_on inp
+         else lys_input.color_off inp
 
     in tabulate_2d (i64.i32 s.h) (i64.i32 s.w) (\y x -> render_pixel (i32.i64 y) (i32.i64 x))
 
