@@ -4,7 +4,7 @@ let mask' (inp: input) =
   let center_dist = f32.sqrt (inp.x ** 2 + inp.y ** 2)
   let (_, r) = dist.rand (0.2, 0.3) inp.rng
   in square r
-     |> rotate (.time)
+     |> rotate (\inp -> inp.time ** 1.2)
      |> speed_up center_dist
 
 let mask = with_input mask'
