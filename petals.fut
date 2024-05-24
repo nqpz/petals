@@ -17,15 +17,16 @@ module hourglasses: mask = import "masks/hourglasses"
 module squares_in_squares: mask = import "masks/squares_in_squares"
 
 module mask_picker =
-         add_mask squares_in_squares
-         (add_mask hourglasses
-          (add_mask dithered_star_clusters
-           (add_mask searching_square
-            (add_mask xor_up_and_down
-             (add_mask random_squares
-              (add_mask flailing_polygon
-               (add_mask spike_zoom
-                (add_mask distorted_square_rotate
-                 (singleton_mask petals)))))))))
+  add_mask squares_in_squares
+  (add_mask hourglasses
+  (add_mask dithered_star_clusters
+  (add_mask searching_square
+  (add_mask xor_up_and_down
+  (add_mask random_squares
+  (add_mask flailing_polygon
+  (add_mask spike_zoom
+  (add_mask distorted_square_rotate
+  (singleton_mask petals)
+  ))))))))
 
 module lys = mk_lys mask_picker
