@@ -5,7 +5,7 @@ let mask' (inp: input) =
   in map_fold (\rng ->
                  let (rng, x) = dist.rand (-0.5, 0.5) rng
                  let (rng, y) = dist.rand (-0.5, 0.5) rng
-                 let (_rng, s) = dist.rand (1, 8) rng
+                 let (_rng, s) = dist.rand (-8, 8) rng
                  in square 0.1
                     |> rotate (.time)
                     |> translate x y
