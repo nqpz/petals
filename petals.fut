@@ -15,9 +15,11 @@ module searching_square: mask = import "masks/searching_square"
 module dithered_star_clusters: mask = import "masks/dithered_star_clusters"
 module hourglasses: mask = import "masks/hourglasses"
 module squares_in_squares: mask = import "masks/squares_in_squares"
+module collatz: mask = import "masks/collatz"
 
 module mask_picker =
-  add_mask squares_in_squares
+  add_mask collatz
+  (add_mask squares_in_squares
   (add_mask hourglasses
   (add_mask dithered_star_clusters
   (add_mask searching_square
@@ -27,6 +29,6 @@ module mask_picker =
   (add_mask spike_zoom
   (add_mask distorted_square_rotate
   (singleton_mask petals)
-  ))))))))
+  )))))))))
 
 module lys = mk_lys mask_picker
